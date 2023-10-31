@@ -1,0 +1,30 @@
+<app-nav></app-nav>
+<header class="hero-img" id="home">
+  <div *ngIf="!registerMode" class="container hero-text text-center p-2">
+    <h1>witajcie w fin<span class="main-finmel">mel</span></h1>
+    <p>W miejscu, gdzie twoja przyszłość jest najważniejsza</p>
+    <div class="d-flex">
+      <a href="#aboutus" class="btn btn-outline-light text-uppercase m-2"
+        >poznaj nas</a
+      >
+      <button
+        (click)="registerToggle()"
+        class="btn btn-outline-light text-uppercase m-2"
+      >
+        Register
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="registerMode" class="container register text-center">
+    <div class="row">
+      <div class="">
+        <!-- <app-register
+          (cancelRegister)="cancelRegisterMode($event)"
+        ></app-register> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-shadow"></div>
+</header>

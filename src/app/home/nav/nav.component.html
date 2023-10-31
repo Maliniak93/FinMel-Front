@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">FinMel</a>
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#aboutus">O nas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#team">Zespół</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Kontakt</a>
+      </li>
+      <!-- <ng-container *ngIf="accountService.currentUser$ | async">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/finmel">FinMel</a>
+        </li>
+      </ng-container> -->
+    </ul>
+
+    <!-- <div
+      class="btn-group dropdown"
+     *ngIf="accountService.currentUser$ | async"
+      dropdown
+    >
+      <button
+        id="button-animated"
+        dropdownToggle
+        type="button"
+        class="btn dropdown-toggle white-hover"
+        aria-controls="dropdown-animated"
+      >
+        Welcome user
+      </button>
+      <ul
+        id="dropdown-animated"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-animated"
+      >
+        <li role="menuitem"><a class="dropdown-item">Edit Profile</a></li>
+        <li role="menuitem">
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div> -->
+
+    <!-- <form
+      *ngIf="!(accountService.currentUser$ | async)"
+      #loginForm="ngForm"
+      class="d-flex"
+      (ngSubmit)="login()"
+      autocomplete="off"
+    >
+      <input
+        name="username"
+        [(ngModel)]="model.email"
+        class="form-control me-2"
+        type="text"
+        placeholder="Email"
+      />
+      <input
+        name="password"
+        [(ngModel)]="model.password"
+        class="form-control me-2"
+        type="password"
+        placeholder="Password"
+      />
+      <button class="btn btn-outline-light" type="submit">Login</button>
+    </form> -->
+  </div>
+</nav>
