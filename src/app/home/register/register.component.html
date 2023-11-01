@@ -1,1 +1,44 @@
-<p>register works!</p>
+<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+  <h2 class="text-center text-primary">Sing up</h2>
+  <hr />
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      name="email"
+      [(ngModel)]="model.email"
+      placeholder="Email"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      [(ngModel)]="model.password"
+      placeholder="Password"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      name="displayName"
+      [(ngModel)]="model.displayName"
+      placeholder="Display Name"
+    />
+  </div>
+  <div class="text-center">
+    <button class="btn btn-outline-light me-2" type="submit">Register</button>
+    <button class="btn btn-outline-light me-2" type="button" (click)="cancel()">
+      Cancel
+    </button>
+    <!-- <div class="row mt-5" *ngIf="validationErrors.length > 0">
+      <ul class="text-danger">
+        <li *ngFor="let error of validationErrors">
+          {{ error }}
+        </li>
+      </ul>
+    </div> -->
+  </div>
+</form>
