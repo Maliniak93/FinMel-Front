@@ -7,6 +7,7 @@ import { TopComponent } from './top/top.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashoardMainComponent } from './dashoard-main/dashoard-main.component';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,6 @@ import { RouterModule } from '@angular/router';
     SidebarComponent,
     DashoardMainComponent,
   ],
-  imports: [CommonModule, FinmelRoutingModule, RouterModule],
+  imports: [CommonModule, FinmelRoutingModule, RouterModule, FontAwesomeModule],
 })
 export class FinmelModule {}

@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeModule } from './home/home.module';
 import { FinmelModule } from './finmel/finmel.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { FinmelModule } from './finmel/finmel.module';
     FormsModule,
     BsDropdownModule.forRoot(),
     HomeModule,
-    FinmelModule
+    FinmelModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
