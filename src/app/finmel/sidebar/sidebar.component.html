@@ -1,1 +1,130 @@
-<p>sidebar works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary"
+    >
+      <div
+        class="offcanvas-md offcanvas-end bg-body-tertiary"
+        tabindex="-1"
+        id="sidebarMenu"
+        aria-labelledby="sidebarMenuLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="sidebarMenuLabel">FinMel</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            data-bs-target="#sidebarMenu"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div
+          class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto"
+        >
+          <ul class="nav flex-column">
+            <div class="btn-group dropdown" dropdown>
+              <li class="nav-item">
+                <button
+                  id="button-animated"
+                  dropdownToggle
+                  type="button"
+                  class="nav-link d-flex align-items-center gap-2 dropdown-toggle"
+                  aria-controls="dropdown-animated"
+                >
+                  <fa-icon icon="building-columns"></fa-icon>
+                  Bank
+                </button>
+                <ul
+                  id="dropdown-animated"
+                  *dropdownMenu
+                  class="dropdown-menu"
+                  role="menu"
+                  aria-labelledby="button-animated"
+                >
+                  <li role="menuitem">
+                    <a
+                      class="dropdown-item nav-link d-flex align-items-center gap-2"
+                      routerLink="/finmel/bank"
+                      >Bank Accounts</a
+                    >
+                  </li>
+                  <li role="menuitem">
+                    <a
+                      class="dropdown-item nav-link d-flex align-items-center gap-2"
+                      >Bank Statements</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </div>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <fa-icon icon="money-bill"></fa-icon>
+                Cash
+              </a>
+            </li>
+          </ul>
+
+          <h6
+            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase"
+          >
+            <span>Saved reports</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-auto">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <fa-icon icon="file"></fa-icon>
+                Current month
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <fa-icon icon="file"></fa-icon>
+                Last quarter
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <fa-icon icon="file"></fa-icon>
+                Social engagement
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <fa-icon icon="file"></fa-icon>
+                Year-end sale
+              </a>
+            </li>
+          </ul>
+
+          <hr class="my-3" />
+
+          <ul class="nav flex-column mb-auto">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <fa-icon icon="gear"></fa-icon>
+                Settings
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link d-flex align-items-center gap-2"
+                href="#"
+                (click)="logout()"
+              >
+                <fa-icon icon="right-from-bracket"></fa-icon>
+                Sign out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <main class="col-md-9 col-lg-10">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

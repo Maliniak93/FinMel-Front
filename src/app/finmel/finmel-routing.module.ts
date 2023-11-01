@@ -2,12 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FinmelComponent } from './finmel.component';
 import { DashoardMainComponent } from './dashoard-main/dashoard-main.component';
+import { BankComponent } from './bank/bank.component';
 
 const routes: Routes = [
   {
     path: 'finmel',
     component: FinmelComponent,
-    children: [{ path: 'main', component: DashoardMainComponent }],
+    children: [
+      { path: '', component: DashoardMainComponent },
+      { path: 'bank', component: BankComponent },
+    ],
   },
 ];
 

@@ -6,9 +6,10 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [NavComponent, HomeComponent, RegisterComponent],
-  imports: [CommonModule, HomeRoutingModule, FormsModule],
+  imports: [CommonModule, HomeRoutingModule, FormsModule, BsDropdownModule],
 })
 export class HomeModule {}

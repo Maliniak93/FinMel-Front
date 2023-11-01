@@ -1,1 +1,46 @@
-<p>dashoard-main works!</p>
+<div class="container mb-4">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Dane</th>
+        <th>Wartość</th>
+        <th>Miesiąc wcześniej</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Personal Wealth</td>
+        <td>{{ mainDashboard.personalWealth }}</td>
+        <td>{{ mainDashboard.compPreviousMonth }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Dane</th>
+        <th>Wartość</th>
+        <th>Miesiąc wcześniej</th>
+        <th>Średnia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monthly Expenses</td>
+        <td>{{ mainDashboard.monthlyExpenses }}</td>
+        <td>{{ mainDashboard.compPreviousMonthExpenses }}</td>
+        <td>{{ mainDashboard.averageMonthlyExpense }}</td>
+      </tr>
+      <tr>
+        <td>Monthly Income</td>
+        <td>{{ mainDashboard.monthlyIncome }}</td>
+        <td>{{ mainDashboard.compPreviousMonthIncome }}</td>
+        <td>{{ mainDashboard.averageMonthlyIncome }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+Po bokach tabelek przycisk rysujący wykresy pod spodem.

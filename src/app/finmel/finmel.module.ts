@@ -8,6 +8,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashoardMainComponent } from './dashoard-main/dashoard-main.component';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BankComponent } from './bank/bank.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TopComponent,
     SidebarComponent,
     DashoardMainComponent,
+    BankComponent,
   ],
-  imports: [CommonModule, FinmelRoutingModule, RouterModule, FontAwesomeModule],
+  imports: [
+    CommonModule,
+    FinmelRoutingModule,
+    RouterModule,
+    FontAwesomeModule,
+    BsDropdownModule,
+  ],
 })
 export class FinmelModule {}

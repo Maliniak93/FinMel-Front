@@ -1,8 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MainDashboard } from 'src/app/_models/mainDashboard';
+import { FinmelService } from 'src/app/_services/finmel.service';
 
 @Component({
   selector: 'app-dashoard-main',
   templateUrl: './dashoard-main.component.html',
   styleUrls: ['./dashoard-main.component.scss'],
 })
-export class DashoardMainComponent {}
+export class DashoardMainComponent implements OnInit {
+  mainDashboard: MainDashboard = {} as MainDashboard;
+
+  constructor(private finmelService: FinmelService) {}
+
+  ngOnInit(): void {
+    this.finmelService.getMainDashboard().subscribe((data) => {
+      this.mainDashboard = data;
+    });
+  }
+}
