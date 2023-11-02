@@ -6,11 +6,9 @@ import { FinmelComponent } from './finmel.component';
 import { TopComponent } from './top/top.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashoardMainComponent } from './dashoard-main/dashoard-main.component';
-import { RouterModule } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BankComponent } from './bank/bank.component';
 import { StatementComponent } from './statement/statement.component';
+import { SharedModule } from '../_modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,12 +19,6 @@ import { StatementComponent } from './statement/statement.component';
     BankComponent,
     StatementComponent,
   ],
-  imports: [
-    CommonModule,
-    FinmelRoutingModule,
-    RouterModule,
-    FontAwesomeModule,
-    BsDropdownModule,
-  ],
+  imports: [CommonModule, FinmelRoutingModule, SharedModule],
 })
 export class FinmelModule {}

@@ -5,11 +5,10 @@ import { HomeRoutingModule } from './home-routing.module';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home.component';
 import { RegisterComponent } from './register/register.component';
-import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SharedModule } from '../_modules/shared.module';
 
 @NgModule({
   declarations: [NavComponent, HomeComponent, RegisterComponent],
-  imports: [CommonModule, HomeRoutingModule, FormsModule, BsDropdownModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
 export class HomeModule {}
