@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MainDashboard } from 'src/app/_models/mainDashboard';
+import { MainDashboard } from 'src/app/_models/main-dasboard';
 import { FinmelService } from 'src/app/_services/finmel.service';
 
 @Component({

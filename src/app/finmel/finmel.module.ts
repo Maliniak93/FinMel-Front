@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BankComponent } from './bank/bank.component';
+import { StatementComponent } from './statement/statement.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { BankComponent } from './bank/bank.component';
     SidebarComponent,
     DashoardMainComponent,
     BankComponent,
+    StatementComponent,
   ],
   imports: [
     CommonModule,

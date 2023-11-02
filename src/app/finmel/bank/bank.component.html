@@ -1,1 +1,24 @@
-<p>bank works!</p>
+<div class="container">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Account Number</th>
+        <th>Account Name</th>
+        <th>Balance</th>
+        <th>Currency</th>
+        <th>Account Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of bankAccounts">
+        <td>{{ account.accountNumber }}</td>
+        <td>{{ account.accountName }}</td>
+        <td>{{ account.balance }}</td>
+        <td>{{ account.currencyTag }}</td>
+        <td>{{ getAccountTypeLabel(account.accountType) }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+Ikonka obok konta, po kliknięciu wyświetlają się wszystkie Statementy, druga
+ikonka wyświetla się na dole wykres ile kasy w danym miesiącu było na koncie

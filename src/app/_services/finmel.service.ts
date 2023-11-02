@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { MainDashboard } from '../_models/mainDashboard';
+import { MainDashboard } from '../_models/main-dasboard';
 import { Observable } from 'rxjs';
+import { BankAccount } from '../_models/bank-account';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class FinmelService {
 
   constructor(private http: HttpClient) {}
 
-  getGttpOptions() {
+  getHttpOptions() {
     const userString = localStorage.getItem('user');
     if (!userString) return;
     const user = JSON.parse(userString);
@@ -26,7 +27,15 @@ export class FinmelService {
   getMainDashboard(): Observable<MainDashboard> {
     return this.http.get<MainDashboard>(
       this.apiUrl + '/dashboard',
-      this.getGttpOptions()
+      this.getHttpOptions()
     );
   }
+
+  getBankAccounts(): Observable<BankAccount[]> {
+    return this.http.get<BankAccount[]>(
+      this.apiUrl + '/bank',
+      this.getHttpOptions()
+    );
+  }
+
 }

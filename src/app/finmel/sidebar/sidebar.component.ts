@@ -6,6 +6,7 @@ import {
   faGear,
   faMoneyBill,
   faRightFromBracket,
+  faTableColumns,
 } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from 'src/app/_services/account.service';
 
@@ -24,7 +25,8 @@ export class SidebarComponent {
       faMoneyBill,
       faFile,
       faGear,
-      faRightFromBracket
+      faRightFromBracket,
+      faTableColumns
     );
   }
 
