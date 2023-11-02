@@ -12,7 +12,7 @@ export class NavComponent {
 
   constructor(
     public accountService: AccountService,
-    private toastrService: ToastrService
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -20,9 +20,10 @@ export class NavComponent {
   login() {
     this.accountService.login(this.model).subscribe({
       next: () => {},
-      error: (error) => {
-        this.toastrService.error('Email address or password is incorrect'),
-          console.log(error);
+      error: (errors) => {
+        for (const key in errors) {
+          this.toastr.error(errors[key]);
+        }
       },
     });
   }
