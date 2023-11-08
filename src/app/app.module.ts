@@ -9,6 +9,7 @@ import { SharedModule } from './_modules/shared.module';
 import { FinmelModule } from './finmel/finmel.module';
 import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

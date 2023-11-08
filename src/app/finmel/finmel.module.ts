@@ -6,8 +6,8 @@ import { FinmelComponent } from './finmel.component';
 import { TopComponent } from './top/top.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashoardMainComponent } from './dashoard-main/dashoard-main.component';
-import { BankComponent } from './bank/bank.component';
-import { StatementComponent } from './statement/statement.component';
+import { BankComponent } from './bankComponents/bank/bank.component';
+import { StatementComponent } from './bankComponents/statement/statement.component';
 import { SharedModule } from '../_modules/shared.module';
 
 @NgModule({

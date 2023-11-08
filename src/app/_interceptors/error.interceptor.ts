@@ -9,10 +9,15 @@ import {
 import { Observable, catchError } from 'rxjs';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AccountService } from '../_services/account.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private toastr: ToastrService) {}
+  constructor(
+    private router: Router,
+    private toastr: ToastrService,
+    private accountService: AccountService
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -37,6 +42,8 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
             case 401:
               this.toastr.error('Unauthorised', error.status.toString());
+              this.accountService.logout();
+              this.router.navigateByUrl('/home');
               break;
             case 404:
               this.router.navigateByUrl('/not-found');

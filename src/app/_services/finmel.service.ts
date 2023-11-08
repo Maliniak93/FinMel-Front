@@ -1,41 +1,60 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { MainDashboard } from '../_models/main-dasboard';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { BankAccount } from '../_models/bank-account';
+import { Statement } from '../_models/bank-statement';
+import { PaginatedResult } from '../_models/pagination';
+import { Specification } from '../_models/specification';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FinmelService {
   private apiUrl = environment.baseUrl;
+  paginatedResult: PaginatedResult<Statement[]> = new PaginatedResult<
+    Statement[]
+  >();
 
   constructor(private http: HttpClient) {}
 
-  getHttpOptions() {
-    const userString = localStorage.getItem('user');
-    if (!userString) return;
-    const user = JSON.parse(userString);
-    return {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + user.token,
-      }),
-    };
-  }
-
   getMainDashboard(): Observable<MainDashboard> {
-    return this.http.get<MainDashboard>(
-      this.apiUrl + '/dashboard',
-      this.getHttpOptions()
-    );
+    return this.http.get<MainDashboard>(this.apiUrl + '/dashboard');
   }
 
   getBankAccounts(): Observable<BankAccount[]> {
-    return this.http.get<BankAccount[]>(
-      this.apiUrl + '/bank',
-      this.getHttpOptions()
-    );
+    return this.http.get<BankAccount[]>(this.apiUrl + '/bank');
   }
 
+  getBankStatements(specification: Specification) {
+    let params = new HttpParams();
+
+    if (specification.sort)
+      params = params.append('sort', specification.sort);
+    if (specification.searchYear)
+      params = params.append('searchYear', specification.searchYear);
+    if (specification.pageNumber)
+      params = params.append('pageNumber', specification.pageNumber);
+    if (specification.pageSize)
+      params = params.append('pageSize', specification.pageSize);
+
+    return this.http
+      .get<Statement[]>(this.apiUrl + '/statement', {
+        observe: 'response',
+        params,
+      })
+      .pipe(
+        map((response) => {
+          if (response.body) {
+            this.paginatedResult.result = response.body;
+          }
+          const pagination = response.headers.get('Pagination');
+          if (pagination) {
+            this.paginatedResult.pagination = JSON.parse(pagination);
+          }
+          return this.paginatedResult;
+        })
+      );
+  }
 }
