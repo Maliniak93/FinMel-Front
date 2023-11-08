@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Statement Number</th>
+        <th>Statement From</th>
+        <th>Statement To</th>
+        <th>Bank Account Id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let statement of statements">
+        <td>{{ statement.statementNumber }}</td>
+        <td>{{ statement.statementFrom | date : "yyyy-MM-dd" }}</td>
+        <td>{{ statement.statementTo | date : "yyyy-MM-dd" }}</td>
+        <td>{{ statement.bankAccountId }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center" *ngIf="pagination">
+    <pagination
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.intemsPerPage"
+      [(ngModel)]="pagination.currentPage"
+      (pageChanged)="pageChanged($event)"
+    ></pagination>
+  </div>
+</div>
