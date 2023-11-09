@@ -1,3 +1,5 @@
+import { StatementDetails } from './bank-statement';
+
 export interface BankAccount {
   id: number;
   accountNumber: string;
@@ -5,6 +7,19 @@ export interface BankAccount {
   balance: number;
   currencyTag: string;
   accountType: number;
+}
+
+export interface BankAccountDetails {
+  id: number;
+  accountNumber: string;
+  balance: number;
+  clientNumber: string;
+  clientName: string;
+  accountName: string;
+  currency: string;
+  intrestRate: string;
+  accountType: number;
+  bankStatements: StatementDetails[];
 }
 
 export const AccountTypeNames: Record<number, string> = {

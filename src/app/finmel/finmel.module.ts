@@ -9,6 +9,7 @@ import { DashoardMainComponent } from './dashoard-main/dashoard-main.component';
 import { BankComponent } from './bankComponents/bank/bank.component';
 import { StatementComponent } from './bankComponents/statement/statement.component';
 import { SharedModule } from '../_modules/shared.module';
+import { BankDetailsComponent } from './bankComponents/bank-details/bank-details.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SharedModule } from '../_modules/shared.module';
     DashoardMainComponent,
     BankComponent,
     StatementComponent,
+    BankDetailsComponent,
   ],
   imports: [CommonModule, FinmelRoutingModule, SharedModule],
 })

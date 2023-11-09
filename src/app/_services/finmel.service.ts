@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { MainDashboard } from '../_models/main-dasboard';
 import { Observable, map } from 'rxjs';
-import { BankAccount } from '../_models/bank-account';
+import { BankAccount, BankAccountDetails } from '../_models/bank-account';
 import { Statement } from '../_models/bank-statement';
 import { PaginatedResult } from '../_models/pagination';
 import { Specification } from '../_models/specification';
@@ -27,11 +27,16 @@ export class FinmelService {
     return this.http.get<BankAccount[]>(this.apiUrl + '/bank');
   }
 
-  getBankStatements(specification: Specification) {
+  getBankAccountDetails(id: string): Observable<BankAccountDetails> {
+    return this.http.get<BankAccountDetails>(this.apiUrl + '/bank/' + id);
+  }
+
+  getBankStatements(
+    specification: Specification
+  ): Observable<PaginatedResult<Statement[]>> {
     let params = new HttpParams();
 
-    if (specification.sort)
-      params = params.append('sort', specification.sort);
+    if (specification.sort) params = params.append('sort', specification.sort);
     if (specification.searchYear)
       params = params.append('searchYear', specification.searchYear);
     if (specification.pageNumber)

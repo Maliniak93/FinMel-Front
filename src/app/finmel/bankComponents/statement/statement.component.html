@@ -5,7 +5,7 @@
         <th>Statement Number</th>
         <th>Statement From</th>
         <th>Statement To</th>
-        <th>Bank Account Id</th>
+        <th>Bank Account Name</th>
       </tr>
     </thead>
     <tbody>
@@ -13,7 +13,7 @@
         <td>{{ statement.statementNumber }}</td>
         <td>{{ statement.statementFrom | date : "yyyy-MM-dd" }}</td>
         <td>{{ statement.statementTo | date : "yyyy-MM-dd" }}</td>
-        <td>{{ statement.bankAccountId }}</td>
+        <td>{{ statement.bankAccountName }}</td>
       </tr>
     </tbody>
   </table>

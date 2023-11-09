@@ -5,6 +5,7 @@ import { DashoardMainComponent } from './dashoard-main/dashoard-main.component';
 import { BankComponent } from './bankComponents/bank/bank.component';
 import { authGuard } from '../_guards/auth.guard';
 import { StatementComponent } from './bankComponents/statement/statement.component';
+import { BankDetailsComponent } from './bankComponents/bank-details/bank-details.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,8 @@ const routes: Routes = [
       { path: '', component: DashoardMainComponent },
       { path: 'bank', component: BankComponent },
       { path: 'statement', component: StatementComponent },
+      { path: 'bank/:id', component: BankDetailsComponent },
+      { path: '**', component: DashoardMainComponent },
     ],
   },
 ];

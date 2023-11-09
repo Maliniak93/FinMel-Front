@@ -1,0 +1,57 @@
+<div class="container">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr class="d-flex-inline">
+        <th>Account Number</th>
+        <th>Client Name</th>
+        <th>Account Name</th>
+        <th>Client Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ bankAccount?.accountNumber }}</td>
+        <td>{{ bankAccount?.clientName }}</td>
+        <td>{{ bankAccount?.accountName }}</td>
+        <td>{{ bankAccount?.clientNumber }}</td>
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th>Balance</th>
+        <th>Intrest Rate</th>
+        <th>Currency</th>
+        <th>Account Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ bankAccount?.balance }}</td>
+        <td>{{ bankAccount?.intrestRate }}</td>
+        <td>{{ bankAccount?.currency }}</td>
+        <td>{{ getAccountTypeLabel(bankAccount?.accountType) }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Statement Number</th>
+        <th>Statement From</th>
+        <th>Statement To</th>
+        <th>Begin Value</th>
+        <th>End Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let statement of bankAccount?.bankStatements">
+        <td>{{ statement.statementNumber }}</td>
+        <td>{{ statement.statementFrom }}</td>
+        <td>{{ statement.statementTo }}</td>
+        <td>{{ statement.beginValue }}</td>
+        <td>{{ statement.endValue }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

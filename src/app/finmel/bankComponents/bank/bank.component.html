@@ -10,7 +10,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let account of bankAccounts">
+      <tr
+        *ngFor="let account of bankAccounts"
+        (click)="navigateToBankDetails(account.id)"
+      >
         <td>{{ account.accountNumber }}</td>
         <td>{{ account.accountName }}</td>
         <td>{{ account.balance }}</td>
