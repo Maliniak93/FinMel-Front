@@ -17,12 +17,17 @@ export class BankComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadBakAccounts();
+  }
+
+  loadBakAccounts() {
     this.bankAccouintService.getBankAccounts().subscribe((data) => {
       this.bankAccounts = data;
     });
   }
 
-  getAccountTypeLabel(accountType: number): string {
+  getAccountTypeLabel(accountType: number | undefined): string | undefined {
+    if (!accountType) return;
     return AccountTypeNames[accountType];
   }
 

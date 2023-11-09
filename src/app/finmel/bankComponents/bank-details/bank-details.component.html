@@ -1,5 +1,5 @@
 <div class="container">
-  <table class="table table-hover table-striped">
+  <table class="table table-striped mb-4 clickable">
     <thead>
       <tr class="d-flex-inline">
         <th>Account Number</th>
@@ -47,8 +47,8 @@
     <tbody>
       <tr *ngFor="let statement of bankAccount?.bankStatements">
         <td>{{ statement.statementNumber }}</td>
-        <td>{{ statement.statementFrom }}</td>
-        <td>{{ statement.statementTo }}</td>
+        <td>{{ statement.statementFrom | date : "yyyy-MM-dd" }}</td>
+        <td>{{ statement.statementTo | date : "yyyy-MM-dd" }}</td>
         <td>{{ statement.beginValue }}</td>
         <td>{{ statement.endValue }}</td>
       </tr>
