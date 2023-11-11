@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Statement } from 'src/app/_models/bank-statement';
 import { Pagination } from 'src/app/_models/pagination';
 import { Specification } from 'src/app/_models/specification';
@@ -15,7 +16,10 @@ export class StatementComponent implements OnInit {
   specification: Specification = new Specification();
   smallnumPages = 0;
 
-  constructor(private statementService: FinmelService) {}
+  constructor(
+    private statementService: FinmelService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getBankStatements();
@@ -37,6 +41,10 @@ export class StatementComponent implements OnInit {
       this.specification.pageNumber = event.page;
       this.getBankStatements();
     }
+  }
+
+  navigateToStatementDetails(id: number) {
+    this.router.navigateByUrl('finmel/statement/' + id);
   }
 
   onSortSelected(event: any) {

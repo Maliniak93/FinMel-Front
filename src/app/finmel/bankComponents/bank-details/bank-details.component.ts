@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   AccountTypeNames,
   BankAccountDetails,
@@ -16,7 +16,8 @@ export class BankDetailsComponent implements OnInit {
 
   constructor(
     private bankAccountService: FinmelService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,5 +35,9 @@ export class BankDetailsComponent implements OnInit {
   getAccountTypeLabel(accountType: number | undefined): string | undefined {
     if (!accountType) return;
     return AccountTypeNames[accountType];
+  }
+
+  navigateToStatementDetails(id: number) {
+    this.router.navigateByUrl('finmel/statement/' + id);
   }
 }

@@ -45,7 +45,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let statement of bankAccount?.bankStatements">
+      <tr
+        *ngFor="let statement of bankAccount?.bankStatements"
+        (click)="navigateToStatementDetails(statement.id)"
+      >
         <td>{{ statement.statementNumber }}</td>
         <td>{{ statement.statementFrom | date : "yyyy-MM-dd" }}</td>
         <td>{{ statement.statementTo | date : "yyyy-MM-dd" }}</td>

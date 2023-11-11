@@ -13,7 +13,7 @@ export class DashoardMainComponent implements OnInit {
   constructor(private finmelService: FinmelService) {}
 
   ngOnInit(): void {
-    this.loadMainDashboard;
+    this.loadMainDashboard();
   }
 
   loadMainDashboard() {

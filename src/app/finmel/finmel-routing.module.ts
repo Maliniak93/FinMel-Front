@@ -6,6 +6,7 @@ import { BankComponent } from './bankComponents/bank/bank.component';
 import { authGuard } from '../_guards/auth.guard';
 import { StatementComponent } from './bankComponents/statement/statement.component';
 import { BankDetailsComponent } from './bankComponents/bank-details/bank-details.component';
+import { StatementDetailsComponent } from './bankComponents/statement-details/statement-details.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,9 @@ const routes: Routes = [
     children: [
       { path: '', component: DashoardMainComponent },
       { path: 'bank', component: BankComponent },
-      { path: 'statement', component: StatementComponent },
       { path: 'bank/:id', component: BankDetailsComponent },
+      { path: 'statement', component: StatementComponent },
+      { path: 'statement/:id', component: StatementDetailsComponent },
       { path: '**', component: DashoardMainComponent },
     ],
   },

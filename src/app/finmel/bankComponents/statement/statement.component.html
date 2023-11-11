@@ -1,4 +1,12 @@
 <div class="container">
+  <div class="d-flex justify-content-center" *ngIf="pagination">
+    <pagination
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.intemsPerPage"
+      [(ngModel)]="pagination.currentPage"
+      (pageChanged)="pageChanged($event)"
+    ></pagination>
+  </div>
   <table class="table table-hover table-striped">
     <thead>
       <tr>
@@ -9,7 +17,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let statement of statements">
+      <tr
+        *ngFor="let statement of statements"
+        (click)="navigateToStatementDetails(statement.id)"
+      >
         <td>{{ statement.statementNumber }}</td>
         <td>{{ statement.statementFrom | date : "yyyy-MM-dd" }}</td>
         <td>{{ statement.statementTo | date : "yyyy-MM-dd" }}</td>
@@ -17,12 +28,4 @@
       </tr>
     </tbody>
   </table>
-  <div class="d-flex justify-content-center" *ngIf="pagination">
-    <pagination
-      [totalItems]="pagination.totalItems"
-      [itemsPerPage]="pagination.intemsPerPage"
-      [(ngModel)]="pagination.currentPage"
-      (pageChanged)="pageChanged($event)"
-    ></pagination>
-  </div>
 </div>

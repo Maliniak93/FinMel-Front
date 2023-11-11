@@ -21,8 +21,11 @@ export class BankComponent implements OnInit {
   }
 
   loadBakAccounts() {
-    this.bankAccouintService.getBankAccounts().subscribe((data) => {
-      this.bankAccounts = data;
+    this.bankAccouintService.getBankAccounts().subscribe({
+      next: (response) => {
+        this.bankAccounts = response;
+      },
+      error: (error) => console.log(error),
     });
   }
 

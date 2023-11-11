@@ -10,6 +10,7 @@ import { BankComponent } from './bankComponents/bank/bank.component';
 import { StatementComponent } from './bankComponents/statement/statement.component';
 import { SharedModule } from '../_modules/shared.module';
 import { BankDetailsComponent } from './bankComponents/bank-details/bank-details.component';
+import { StatementDetailsComponent } from './bankComponents/statement-details/statement-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BankDetailsComponent } from './bankComponents/bank-details/bank-details
     BankComponent,
     StatementComponent,
     BankDetailsComponent,
+    StatementDetailsComponent,
   ],
   imports: [CommonModule, FinmelRoutingModule, SharedModule],
 })
