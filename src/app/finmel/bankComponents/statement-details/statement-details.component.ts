@@ -61,4 +61,15 @@ export class StatementDetailsComponent implements OnInit {
       this.getBankStatementDetailsTransactions();
     }
   }
+  onSearch(text: string) {
+    if (text) {
+      this.specification.search = text;
+      this.getBankStatementDetailsTransactions();
+    }
+  }
+
+  onReset() {
+    this.specification = new Specification();
+    this.getBankStatementDetailsTransactions();
+  }
 }

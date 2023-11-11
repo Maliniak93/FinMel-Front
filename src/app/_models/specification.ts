@@ -3,4 +3,5 @@ export class Specification {
   searchYear = 2023;
   pageNumber = 1;
   pageSize = 10;
+  search = '';
 }

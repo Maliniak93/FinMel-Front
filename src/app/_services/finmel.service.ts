@@ -76,12 +76,12 @@ export class FinmelService {
   ): Observable<PaginatedResult<StatementTransaction[]>> {
     let params = new HttpParams();
     if (specification.sort) params = params.append('sort', specification.sort);
-    if (specification.searchYear)
-      params = params.append('searchYear', specification.searchYear);
     if (specification.pageNumber)
       params = params.append('pageNumber', specification.pageNumber);
     if (specification.pageSize)
       params = params.append('pageSize', specification.pageSize);
+    if (specification.search)
+      params = params.append('search', specification.search);
 
     return this.http
       .get<StatementTransaction[]>(
