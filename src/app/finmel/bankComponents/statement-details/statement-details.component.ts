@@ -16,6 +16,12 @@ export class StatementDetailsComponent implements OnInit {
   statementDetailsTransactions: StatementTransaction[] = [];
   pagination: Pagination | undefined;
   specification: Specification = new Specification();
+  pageSizeOptions = [
+    { size: '10', value: 10 },
+    { size: '15', value: 15 },
+    { size: '20', value: 20 },
+    { size: '30', value: 30 },
+  ];
 
   constructor(
     private statementService: FinmelService,
@@ -69,7 +75,12 @@ export class StatementDetailsComponent implements OnInit {
   }
 
   onReset() {
-    this.specification = new Specification();
+    this.specification.search = '';
+    this.getBankStatementDetailsTransactions();
+  }
+
+  onPageSizeSelected(event: any) {
+    this.specification.pageSize = Number(event.target.value);
     this.getBankStatementDetailsTransactions();
   }
 }

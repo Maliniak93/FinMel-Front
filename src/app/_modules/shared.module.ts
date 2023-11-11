@@ -6,8 +6,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [],
@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
-    MatTooltipModule,
+    TooltipModule.forRoot(),
   ],
   exports: [
     FormsModule,
@@ -32,7 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ToastrModule,
     PaginationModule,
     ButtonsModule,
-    MatTooltipModule,
+    TooltipModule,
   ],
 })
 export class SharedModule {}

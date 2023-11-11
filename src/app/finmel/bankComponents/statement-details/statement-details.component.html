@@ -20,16 +20,23 @@
     </tbody>
   </table>
   <div class="d-flex align-items-center justify-content-between">
+    <div class="form-group m-2">
+      <select class="form-select" (change)="onPageSizeSelected($event)">
+        <option *ngFor="let size of pageSizeOptions" [value]="size.value">
+          {{ size.size }}
+        </option>
+      </select>
+    </div>
     <div class="me-auto" *ngIf="pagination">
       <pagination
         class="m-0"
         [totalItems]="pagination.totalItems"
-        [itemsPerPage]="pagination.intemsPerPage"
+        [itemsPerPage]="pagination.itemsPerPage"
         [(ngModel)]="pagination.currentPage"
         (pageChanged)="pageChanged($event)"
       ></pagination>
     </div>
-    <div class="m-2 btn-group" dropdown>
+    <div class="btn-group m-2" dropdown>
       <button
         id="button-animated"
         dropdownToggle
@@ -109,7 +116,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let transaction of statementDetailsTransactions">
+      <tr
+        *ngFor="let transaction of statementDetailsTransactions"
+        tooltip="{{ transaction.description }}"
+        [delay]="1000"
+        container="body"
+      >
         <td>{{ transaction.executionDate | date : "yyyy-MM-dd" }}</td>
         <td>{{ transaction.value }}</td>
         <td>{{ transaction.realValue }}</td>
