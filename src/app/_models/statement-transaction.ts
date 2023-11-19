@@ -5,4 +5,6 @@ export interface StatementTransaction {
   value: number;
   realValue: number;
   description: string;
+  type: string;
+  transactionCode: string;
 }

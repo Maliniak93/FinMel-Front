@@ -1,11 +1,74 @@
 <div class="container">
-  <div class="d-flex justify-content-center" *ngIf="pagination">
-    <pagination
-      [totalItems]="pagination.totalItems"
-      [itemsPerPage]="pagination.itemsPerPage"
-      [(ngModel)]="pagination.currentPage"
-      (pageChanged)="pageChanged($event)"
-    ></pagination>
+  <div
+    class="d-flex align-items-center justify-content-between"
+    *ngIf="pagination"
+  >
+    <div class="form-group m-2">
+      <select class="form-select" (change)="onPageSizeSelected($event)">
+        <option
+          *ngFor="let size of sharedService.pageSizeOptions"
+          [value]="size.value"
+        >
+          {{ size.size }}
+        </option>
+      </select>
+    </div>
+    <div class="me-auto">
+      <pagination
+        class="m-0"
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)"
+      ></pagination>
+    </div>
+    <div class="form-group m-2">
+      <select class="form-select" (change)="onYearSearch($event)">
+        <option
+          *ngFor="let year of sharedService.searchYearOptions"
+          [value]="year.value"
+        >
+          {{ year.year }}
+        </option>
+      </select>
+    </div>
+    <div class="btn-group m-2" dropdown>
+      <button
+        id="button-animated"
+        dropdownToggle
+        type="button"
+        class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-animated"
+      >
+        Sort <span class="caret"></span>
+      </button>
+      <ul
+        id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="button-basic"
+      >
+        <li role="menuitem">
+          <a
+            class="dropdown-item"
+            [(ngModel)]="specification.sort"
+            btnRadio="desc"
+            (click)="getBankStatements()"
+            >Descending</a
+          >
+        </li>
+        <li role="menuitem">
+          <a
+            class="dropdown-item"
+            [(ngModel)]="specification.sort"
+            btnRadio="asc"
+            (click)="getBankStatements()"
+            >Ascending</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
   <table class="table table-hover table-striped">
     <thead>
@@ -18,6 +81,7 @@
     </thead>
     <tbody>
       <tr
+        class="clickable-row"
         *ngFor="let statement of statements"
         (click)="navigateToStatementDetails(statement.id)"
       >
@@ -28,4 +92,67 @@
       </tr>
     </tbody>
   </table>
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Add Statements</h3>
+      <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
+    </div>
+    <div class="col-md-9" style="margin-bottom: 40px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="50%">Name</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of uploader?.queue">
+            <td>
+              <strong>{{ item?.file?.name }}</strong>
+            </td>
+            <td *ngIf="uploader?.options?.isHTML5" nowrap>
+              {{ item?.file?.size / 1024 / 1024 | number : ".2" }} MB
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <div>
+          Queue progress:
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{ width: uploader?.progress + '%' }"
+            ></div>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-success btn-s m-3"
+          (click)="uploader?.uploadAll()"
+          [disabled]="!uploader?.getNotUploadedItems()?.length"
+        >
+          <span class="fa fa-upload"></span> Upload all
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning btn-s m-3"
+          (click)="uploader?.cancelAll()"
+          [disabled]="!uploader?.isUploading"
+        >
+          <span class="fa fa-ban"></span> Cancel all
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-s m-3"
+          (click)="uploader?.clearQueue()"
+          [disabled]="!uploader?.queue?.length"
+        >
+          <span class="fa fa-trash"></span> Remove all
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

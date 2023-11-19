@@ -12,7 +12,7 @@ import { FinmelService } from 'src/app/_services/finmel.service';
   styleUrls: ['./bank-details.component.scss'],
 })
 export class BankDetailsComponent implements OnInit {
-  bankAccount: BankAccountDetails | undefined;
+  bankAccount: BankAccountDetails = {} as BankAccountDetails;
 
   constructor(
     private bankAccountService: FinmelService,
@@ -32,8 +32,7 @@ export class BankDetailsComponent implements OnInit {
     });
   }
 
-  getAccountTypeLabel(accountType: number | undefined): string | undefined {
-    if (!accountType) return;
+  getAccountTypeLabel(accountType: number): string {
     return AccountTypeNames[accountType];
   }
 

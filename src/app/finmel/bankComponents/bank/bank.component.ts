@@ -29,8 +29,7 @@ export class BankComponent implements OnInit {
     });
   }
 
-  getAccountTypeLabel(accountType: number | undefined): string | undefined {
-    if (!accountType) return;
+  getAccountTypeLabel(accountType: number): string {
     return AccountTypeNames[accountType];
   }
 

@@ -8,6 +8,7 @@ import { Statement, StatementDetails } from '../_models/bank-statement';
 import { PaginatedResult } from '../_models/pagination';
 import { Specification } from '../_models/specification';
 import { StatementTransaction } from '../_models/statement-transaction';
+import { TransactionCodes } from '../_models/transaction-codes';
 
 @Injectable({
   providedIn: 'root',
@@ -103,5 +104,9 @@ export class FinmelService {
           return this.paginatedResultTransaction;
         })
       );
+  }
+
+  getTransactionCodes(): Observable<TransactionCodes[]> {
+    return this.http.get<TransactionCodes[]>(this.apiUrl + '/statement/codes');
   }
 }

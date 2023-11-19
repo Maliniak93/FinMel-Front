@@ -5,6 +5,7 @@ import { Pagination } from 'src/app/_models/pagination';
 import { Specification } from 'src/app/_models/specification';
 import { StatementTransaction } from 'src/app/_models/statement-transaction';
 import { FinmelService } from 'src/app/_services/finmel.service';
+import { SharedService } from 'src/app/_services/shared.service';
 
 @Component({
   selector: 'app-statement-details',
@@ -16,16 +17,11 @@ export class StatementDetailsComponent implements OnInit {
   statementDetailsTransactions: StatementTransaction[] = [];
   pagination: Pagination | undefined;
   specification: Specification = new Specification();
-  pageSizeOptions = [
-    { size: '10', value: 10 },
-    { size: '15', value: 15 },
-    { size: '20', value: 20 },
-    { size: '30', value: 30 },
-  ];
 
   constructor(
     private statementService: FinmelService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public pageSize: SharedService
   ) {}
 
   ngOnInit(): void {

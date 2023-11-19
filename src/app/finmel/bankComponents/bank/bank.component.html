@@ -11,6 +11,7 @@
     </thead>
     <tbody>
       <tr
+        class="clickable-row"
         *ngFor="let account of bankAccounts"
         (click)="navigateToBankDetails(account.id)"
       >

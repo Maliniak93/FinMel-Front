@@ -8,6 +8,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [],
@@ -23,6 +24,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
     TooltipModule.forRoot(),
+    FileUploadModule,
   ],
   exports: [
     FormsModule,
@@ -33,6 +35,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     PaginationModule,
     ButtonsModule,
     TooltipModule,
+    FileUploadModule,
   ],
 })
 export class SharedModule {}
