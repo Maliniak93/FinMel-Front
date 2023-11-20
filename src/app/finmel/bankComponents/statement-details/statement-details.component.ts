@@ -1,11 +1,15 @@
+import { transition } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { StatementDetails } from 'src/app/_models/bank-statement';
 import { Pagination } from 'src/app/_models/pagination';
 import { Specification } from 'src/app/_models/specification';
 import { StatementTransaction } from 'src/app/_models/statement-transaction';
 import { FinmelService } from 'src/app/_services/finmel.service';
 import { SharedService } from 'src/app/_services/shared.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-statement-details',
@@ -18,11 +22,18 @@ export class StatementDetailsComponent implements OnInit {
   pagination: Pagination | undefined;
   specification: Specification = new Specification();
 
+  editedTransactionId: number | undefined;
+  editingDate: boolean = false;
+
   constructor(
     private statementService: FinmelService,
     private route: ActivatedRoute,
-    public pageSize: SharedService
-  ) {}
+    public pageSize: SharedService,
+    private library: FaIconLibrary,
+    private datePipe: DatePipe
+  ) {
+    library.addIcons(faEllipsis);
+  }
 
   ngOnInit(): void {
     this.getBankStatements();
@@ -78,5 +89,22 @@ export class StatementDetailsComponent implements OnInit {
   onPageSizeSelected(event: any) {
     this.specification.pageSize = Number(event.target.value);
     this.getBankStatementDetailsTransactions();
+  }
+
+  enableDataEditing(transactionId: number) {
+    this.editingDate = true;
+    this.editedTransactionId = transactionId;
+  }
+
+  onDateChanged(newDate: string) {
+    this.editingDate = !this.editingDate;
+    const formattedDate = this.datePipe.transform(newDate, 'yyyy-MM-dd');
+    if (this.editedTransactionId && formattedDate) {
+      this.statementService
+        .updateTransactionDashboardDate(this.editedTransactionId, formattedDate)
+        .subscribe({
+          error: (error) => console.error(error),
+        });
+    }
   }
 }

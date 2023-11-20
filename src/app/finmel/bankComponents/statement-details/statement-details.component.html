@@ -115,12 +115,14 @@
   <table class="table table-hover table-striped">
     <thead>
       <tr>
-        <th>Execution Date</th>
+        <th>Transaction Date</th>
+        <th>Dashboard Date</th>
         <th>Value</th>
         <th>Account Balance</th>
         <th>Description</th>
         <th>Type</th>
-        <th>Transaction Code</th>
+        <th>Code</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -130,7 +132,36 @@
         [delay]="1000"
         container="body"
       >
-        <td>{{ transaction.executionDate | date : "yyyy-MM-dd" }}</td>
+        <td>{{ transaction.transactionDate | date : "yyyy-MM-dd" }}</td>
+        <td>
+          <ng-container
+            *ngIf="
+              !editingDate || editedTransactionId !== transaction.id;
+              else datepickerEdit
+            "
+          >
+            {{ transaction.dashboardDate | date : "yyyy-MM-dd" }}</ng-container
+          >
+          <ng-template #datepickerEdit>
+            <div class="row">
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="{{
+                    transaction.dashboardDate | date : 'yyyy-MM-dd'
+                  }}"
+                  [bsConfig]="{
+                    dateInputFormat: 'YYYY-MM-DD',
+                  }"
+                  class="form-control"
+                  bsDatepicker
+                  [(ngModel)]="transaction.dashboardDate"
+                  (ngModelChange)="onDateChanged(transaction.dashboardDate)"
+                />
+              </div>
+            </div>
+          </ng-template>
+        </td>
         <td>{{ transaction.value }}</td>
         <td>{{ transaction.realValue }}</td>
         <td>
@@ -142,6 +173,37 @@
         </td>
         <td>{{ transaction.type }}</td>
         <td>{{ transaction.transactionCode }}</td>
+        <td>
+          <div class="btn-group" dropdown>
+            <button
+              id="button-animated"
+              dropdownToggle
+              type="button"
+              class="btn"
+              aria-controls="dropdown-animated"
+            >
+              <fa-icon icon="ellipsis"></fa-icon>
+            </button>
+            <ul
+              id="dropdown-basic"
+              *dropdownMenu
+              class="dropdown-menu dropdown-menu-right"
+              role="menu"
+              aria-labelledby="button-basic"
+            >
+              <li role="menuitem">
+                <a class="dropdown-item">Change Transaction Code</a>
+              </li>
+              <li role="menuitem">
+                <a
+                  class="dropdown-item"
+                  (click)="enableDataEditing(transaction.id)"
+                  >Change Date</a
+                >
+              </li>
+            </ul>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>

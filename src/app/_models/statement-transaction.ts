@@ -1,7 +1,8 @@
 export interface StatementTransaction {
   id: number;
   bankStatementId: number;
-  executionDate: string;
+  transactionDate: string;
+  dashboardDate: string;
   value: number;
   realValue: number;
   description: string;

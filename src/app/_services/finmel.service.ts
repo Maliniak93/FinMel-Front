@@ -109,4 +109,12 @@ export class FinmelService {
   getTransactionCodes(): Observable<TransactionCodes[]> {
     return this.http.get<TransactionCodes[]>(this.apiUrl + '/statement/codes');
   }
+
+  updateTransactionDashboardDate(id: number, newDate: string) {
+    const body = { newDate: newDate };
+    return this.http.put(
+      this.apiUrl + '/Statement/transactions/date/' + id,
+      body
+    );
+  }
 }

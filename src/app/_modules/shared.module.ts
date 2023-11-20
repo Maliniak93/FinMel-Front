@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
@@ -25,6 +26,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     ButtonsModule.forRoot(),
     TooltipModule.forRoot(),
     FileUploadModule,
+    BsDatepickerModule.forRoot(),
   ],
   exports: [
     FormsModule,
@@ -36,6 +38,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     ButtonsModule,
     TooltipModule,
     FileUploadModule,
+    BsDatepickerModule,
   ],
+  providers: [DatePipe],
 })
 export class SharedModule {}
