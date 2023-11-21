@@ -1,5 +1,5 @@
 import { transition } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
@@ -33,6 +33,11 @@ export class StatementDetailsComponent implements OnInit {
     private datePipe: DatePipe
   ) {
     library.addIcons(faEllipsis);
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  handleEscapeKey(event: KeyboardEvent): void {
+    this.editingDate = false;
   }
 
   ngOnInit(): void {
@@ -97,7 +102,6 @@ export class StatementDetailsComponent implements OnInit {
   }
 
   onDateChanged(newDate: string) {
-    this.editingDate = !this.editingDate;
     const formattedDate = this.datePipe.transform(newDate, 'yyyy-MM-dd');
     if (this.editedTransactionId && formattedDate) {
       this.statementService
@@ -105,6 +109,7 @@ export class StatementDetailsComponent implements OnInit {
         .subscribe({
           error: (error) => console.error(error),
         });
+      this.editingDate = !this.editingDate;
     }
   }
 }
