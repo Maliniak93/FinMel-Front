@@ -117,4 +117,12 @@ export class FinmelService {
       body
     );
   }
+
+  updateTransactionType(id: number, newType: string) {
+    const body = { type: newType };
+    return this.http.put(
+      this.apiUrl + '/statement/transactions/type/' + id,
+      body
+    );
+  }
 }

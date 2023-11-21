@@ -16,5 +16,13 @@ export class SharedService {
     { year: '2022', value: 2022 },
   ];
 
+  transactionTypes = [
+    { type: 'Expenses' },
+    { type: 'Income' },
+    { type: 'Investments' },
+    { type: 'Other' },
+    { type: 'Ignore' },
+  ];
+
   constructor() {}
 }

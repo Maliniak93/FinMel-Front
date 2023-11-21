@@ -24,13 +24,14 @@ export class StatementDetailsComponent implements OnInit {
 
   editedTransactionId: number | undefined;
   editingDate: boolean = false;
+  editingType: boolean = false;
 
   constructor(
     private statementService: FinmelService,
     private route: ActivatedRoute,
-    public pageSize: SharedService,
     private library: FaIconLibrary,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    public sharedService: SharedService
   ) {
     library.addIcons(faEllipsis);
   }
@@ -38,6 +39,7 @@ export class StatementDetailsComponent implements OnInit {
   @HostListener('document:keydown.escape', ['$event'])
   handleEscapeKey(event: KeyboardEvent): void {
     this.editingDate = false;
+    this.editingType = false;
   }
 
   ngOnInit(): void {
@@ -101,6 +103,11 @@ export class StatementDetailsComponent implements OnInit {
     this.editedTransactionId = transactionId;
   }
 
+  enableTypeEditing(transactionId: number) {
+    this.editingType = true;
+    this.editedTransactionId = transactionId;
+  }
+
   onDateChanged(newDate: string) {
     const formattedDate = this.datePipe.transform(newDate, 'yyyy-MM-dd');
     if (this.editedTransactionId && formattedDate) {
@@ -109,7 +116,15 @@ export class StatementDetailsComponent implements OnInit {
         .subscribe({
           error: (error) => console.error(error),
         });
-      this.editingDate = !this.editingDate;
+      this.editingDate = false;
     }
+  }
+
+  onTypeChanged(newType: string) {
+    if (this.editedTransactionId)
+      this.statementService
+        .updateTransactionType(this.editedTransactionId, newType)
+        .subscribe({ error: (error) => console.error(error) });
+    this.editingType = false;
   }
 }

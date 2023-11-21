@@ -26,7 +26,7 @@
     <div class="form-group m-2">
       <select class="form-select" (change)="onPageSizeSelected($event)">
         <option
-          *ngFor="let size of pageSize.pageSizeOptions"
+          *ngFor="let size of sharedService.pageSizeOptions"
           [value]="size.value"
         >
           {{ size.size }}
@@ -171,7 +171,31 @@
               : transaction.description
           }}
         </td>
-        <td>{{ transaction.type }}</td>
+        <td>
+          <ng-container
+            *ngIf="
+              !editingType || editedTransactionId !== transaction.id;
+              else typeEdit
+            "
+            >{{ transaction.type }}</ng-container
+          >
+          <ng-template #typeEdit>
+            <div class="form-group">
+              <select
+                class="form-select"
+                [(ngModel)]="transaction.type"
+                (ngModelChange)="onTypeChanged(transaction.type)"
+              >
+                <option
+                  *ngFor="let size of sharedService.transactionTypes"
+                  [value]="size.type"
+                >
+                  {{ size.type }}
+                </option>
+              </select>
+            </div>
+          </ng-template>
+        </td>
         <td>{{ transaction.transactionCode }}</td>
         <td>
           <div class="btn-group" dropdown>
@@ -192,7 +216,11 @@
               aria-labelledby="button-basic"
             >
               <li role="menuitem">
-                <a class="dropdown-item">Change Transaction Code</a>
+                <a
+                  class="dropdown-item"
+                  (click)="enableTypeEditing(transaction.id)"
+                  >Change Transaction Code</a
+                >
               </li>
               <li role="menuitem">
                 <a
